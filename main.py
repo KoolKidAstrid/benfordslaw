@@ -9,17 +9,41 @@ count = 0
 while count < sample:
     count += 1
     num = random.randint(0,limit)
-    num2 = num*random.randint(0, limit)*random.randint(0, limit)*random.randint(0, limit)*random.randint(0, limit)
-
+    num2 = random.randint(0, limit) * random.randint(0, limit) * random.randint(0, limit) * random.randint(0, limit)
     while num >= 10:
         num = num // 10
     while num2 >= 10:
         num2 = num2 // 10
-    output2[num2 - 1] += 1
-    output[num - 1] += 1
 
-plt.bar([0.8, 1.8, 2.8, 3.8, 4.8, 5.8, 6.8, 7.8, 8.8], output2, width=0.4, color=["lightcoral"], edgecolor=["black"], label="Four Random Numbers 1 - " + str(limit) + " Multiplied Together")
-plt.bar([1.2, 2.2, 3.2, 4.2, 5.2, 6.2, 7.2, 8.2, 9.2], output, width=0.4, color=["lightskyblue"], edgecolor=["black"], label="Random Number 1 - " + str(limit))
+    output[num - 1] += 1
+    output2[num2 - 1] += 1
+
+positions = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+pos1 = []
+pos2 = []
+for p in positions:
+    pos1.append(p + 0.2)
+    pos2.append(p - 0.2)
+
+plt.bar(
+    pos1,
+    output,
+    width=0.4,
+    color=["lightskyblue"],
+    edgecolor=["black"],
+    label="Random Number 1 - " + str(limit)
+)
+
+plt.bar(
+    pos2,
+    output2,
+    width=0.4,
+    color=["lightcoral"],
+    edgecolor=["black"],
+    label="Four Random Numbers 1 - " + str(limit) + " Multiplied Together"
+)
+
+
 plt.ylim(0, sample/2)
 plt.grid(axis="y")
 count = 0
